@@ -1,2 +1,2 @@
 # student-management-system
-dbsm project
+DBMS project
