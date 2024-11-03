@@ -449,26 +449,5 @@ def fetch_student_details(roll_no):
         cursor.close()
         conn.close()
 
-def fetch_academic_details(roll_no):
-    conn = connect_to_db()
-    if conn is None:
-        return
-    cursor = conn.cursor()
-    try:
-        cursor.execute("SELECT * FROM academic WHERE s_id = %s", (roll_no,))
-        records = cursor.fetchall()
-        if records:
-            academic_details = "Academic Details:\n"
-            for record in records:
-                academic_details += f"Course ID: {record[1]}, Grade: {record[2]}\n"
-            student_details_text.insert(tk.END, academic_details)
-        else:
-            messagebox.showinfo("No Record", "No academic details found for that Roll Number.")
-    except mysql.connector.Error as err:
-        messagebox.showerror("Error", f"An error occurred: {err}")
-    finally:
-        cursor.close()
-        conn.close()
-
 show_frame(front_page)  # Show the front page initially
 app.mainloop()
